@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.DetalleServicioEmpleado"
+             Title="DetalleServicioEmpleado">
+
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Imagen del servicio -->
+            <Image Source="{Binding Detalles.Imagen}" HeightRequest="200" HorizontalOptions="Center" />
+
+            <!-- Nombre del servicio -->
+            <Label Text="{Binding Detalles.Nombre}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="10" />
+
+            <!-- Descripción del servicio -->
+            <Label Text="{Binding Detalles.Descripcion}" FontSize="Small" TextColor="Gray" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

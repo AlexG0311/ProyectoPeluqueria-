@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.LoginPage"
+             Title="Login">
+
+    <StackLayout Padding="20" Spacing="10" VerticalOptions="Center">
+        <Label Text="Iniciar Sesión" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <!-- Campo de usuario -->
+        <Entry x:Name="CorreoEntry" Placeholder="Correo Electronico" />
+
+        <!-- Campo de contraseña -->
+        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True"/>
+
+        <!-- Botón de inicio de sesión -->
+        <Button Text="Iniciar Sesión" BackgroundColor="LightGray" TextColor="Black" Clicked="Login"/>
+
+        <!-- Enlace de registro -->
+        <Label Text="Registrarse" TextColor="Blue" HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Registrar" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>

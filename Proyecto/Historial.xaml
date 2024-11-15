@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.Historial"
+             Title="Historial">
+    <StackLayout Padding="10" Spacing="15">
+        <Label Text="Historial" 
+               FontSize="28" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+
+        <!-- Tabs for filtering -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Button Text="Todos" WidthRequest="100" />
+            <Button Text="Servicios" WidthRequest="100" />
+            <Button Text="Productos" WidthRequest="100" />
+        </StackLayout>
+
+        <!-- Appointment list -->
+        <CollectionView x:Name="AppointmentList" ItemsSource="{Binding Appointments}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Appointment image -->
+                        <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" Grid.Column="0" />
+
+                        <!-- Appointment details -->
+                        <StackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                            <Label Text="{Binding Date}" FontSize="12" />
+                            <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
+                        </StackLayout>
+
+                        <!-- Price -->
+                        <Label Text="{Binding Price}" FontSize="16" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

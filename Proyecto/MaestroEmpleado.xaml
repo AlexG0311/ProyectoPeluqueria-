@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.MaestroEmpleado"
+             Title="MaestroEmpleado">
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+
+            <!-- Imagen de perfil en la parte superior -->
+            <Image Source="dotnet_bot.png" 
+                HeightRequest="100" 
+                WidthRequest="100" 
+                HorizontalOptions="Center" 
+                Margin="0,0,0,20"/>
+
+            <!-- Botones del menú con bordes redondeados y espaciado -->
+            <Button Text="Inicio" Clicked="InicioEmpleado" 
+                 CornerRadius="20" 
+                 HeightRequest="50"
+                 HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Servicios" Clicked="Servicios" 
+                 CornerRadius="20" 
+                 HeightRequest="50"
+                 HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Citas" Clicked="Cita" 
+                 CornerRadius="20" 
+                 HeightRequest="50"
+                 HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Historial" Clicked="Historial" 
+                 CornerRadius="20" 
+                 HeightRequest="50"
+                 HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Perfil" Clicked="Perfil" 
+                 CornerRadius="20" 
+                 HeightRequest="50"
+                 HorizontalOptions="FillAndExpand" />
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

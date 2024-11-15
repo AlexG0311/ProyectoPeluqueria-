@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.Reserva"
+             Title="Reserva Cita"
+             BackgroundColor="White">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+
+        <!-- Calendario para seleccionar fecha -->
+        <Label Text="Seleccione una fecha:" FontAttributes="Bold" FontSize="Medium" Margin="0,10"/>
+            <controls:Calendar
+            x:Name="calendar"
+            HorizontalOptions="Fill"
+            MonthLabelColor="Black"
+            SelectedDayBackgroundColor="DarkCyan"
+            VerticalOptions="Fill"  
+            YearLabelColor="Black"
+             />
+
+
+            <!-- Selección de hora -->
+        <Label Text="Seleccione la hora:" FontAttributes="Bold" FontSize="Medium" Margin="0,20,0,0" TextColor="Black"/>
+            <TimePicker x:Name="timePicker" TextColor="Black" />
+
+     
+
+        <!-- Botón para confirmar la reserva -->
+        <Button Text="Confirmar Reserva" Margin="0,20,0,0" />
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

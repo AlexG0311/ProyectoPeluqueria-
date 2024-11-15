@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Proyecto.DetallesServicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DetallesServicio">
+
+    <StackLayout Padding="10">
+        <!--  Mostrar la imagen del servicio  -->
+        <Image
+            HeightRequest="200"
+            HorizontalOptions="Center"
+            Source="dotne.png" />
+
+        <!--  Mostrar el nombre del servicio  -->
+        <Label
+            Margin="10"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="" />
+
+        <!--  Mostrar la calificación del servicio  -->
+        <Label
+            Margin="0,0,9,300"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="" />
+
+        <Button Text="Agendar"
+                Clicked="OnNavigateButtonClicked"/>
+    </StackLayout>
+</ContentPage>

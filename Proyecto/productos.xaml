@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.Productos"
+             Title="Productos">
+    <ScrollView>
+        <StackLayout>
+
+            <Label Text="Productos" FontSize="Large" FontAttributes="Bold" Margin="10" />
+
+            <!-- Colección de Servicios "Individuales" -->
+
+            <CollectionView
+                x:Name="ColecionServicios"
+                Margin="10"
+                ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="5"
+                            Padding="10"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            HeightRequest="250"
+                            WidthRequest="160">
+                            <VerticalStackLayout>
+
+                                <!--  Imagen del producto  -->
+                                <Image
+                                    Margin="0,0,0,5"
+                                    Aspect="AspectFill"
+                                    HeightRequest="150"
+                                    Source="{Binding Imagen}" />
+
+                                <!--  Nombre del producto  -->
+                                <Label
+                                    Margin="0,0,0,5"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Nombre}"
+                                    TextColor="Black" />
+
+                                <!--  Calificación  -->
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
+                                    TextColor="Gray" />
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
+
+

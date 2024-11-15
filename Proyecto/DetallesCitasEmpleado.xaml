@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.DetallesCitasEmpleado"
+             Title="DetallesCitasEmpleado">
+
+    <StackLayout Padding="20" Spacing="15" HorizontalOptions="Center">
+
+        <!-- Imagen de perfil del cliente -->
+        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" />
+
+        <!-- Nombre del cliente -->
+        <Label Text="{Binding Nombre}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,10,0,0" />
+
+        <!-- Descripción de la cita -->
+        <Label Text="{Binding Descripcion}" FontSize="Medium" TextColor="Gray" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+
+        <!-- Botones de acción -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+            <!-- Botón Cancelar cita -->
+            <Button Text="Cancelar cita"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                Clicked="OnCancelarCitaClicked"
+                WidthRequest="150" />
+
+            <!-- Botón Completado -->
+            <Button Text="Completado"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                Clicked="OnCompletadoClicked"
+                WidthRequest="150" />
+        </StackLayout>
+
+    </StackLayout>
+
+
+
+</ContentPage>
