@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Model
 {
-  public class Servicio
+    public class ClienteDTO
     {
         [Key]
-        public int IdServicio { get; set; }
-        public string Nombre { get; set; }
-        public string Imagen { get; set; }
-        public string Calificacion { get; set; }
+        public int idCliente { get; set; }
     }
 }

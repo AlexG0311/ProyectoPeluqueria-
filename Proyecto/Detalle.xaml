@@ -62,40 +62,34 @@
             </Grid>
 
             <!-- Servicios -->
-            <Label
-                Text="Servicios"
-                FontAttributes="Bold"
-                FontSize="24"
-                Margin="0,10"
-                TextColor="Black" />
             <CollectionView
                 x:Name="ColleccionServicio"
                 Margin="0,0,0,10"
                 ItemsLayout="HorizontalList"
-                ItemsSource="{Binding Servicios}">
+    ItemsSource="{Binding Servicios}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
-                            Margin="5"
-                            Padding="10"
-                            CornerRadius="10"
-                            HasShadow="True"
-                            HeightRequest="250"
-                            WidthRequest="170">
+                Margin="5"
+                Padding="10"
+                CornerRadius="10"
+                HasShadow="True"
+                HeightRequest="250"
+                WidthRequest="170">
                             <VerticalStackLayout>
                                 <Image
-                                    Aspect="AspectFill"
-                                    HeightRequest="150"
-                                    Source="{Binding Imagen}" />
+                        Aspect="AspectFill"
+                        HeightRequest="150"
+                        Source="{Binding Imagen}" />
                                 <Label
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    Text="{Binding Nombre}"
-                                    TextColor="Black" />
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Text="{Binding Nombre}"
+                        TextColor="Black" />
                                 <Label
-                                    FontSize="14"
-                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
-                                    TextColor="Gold" />
+                        FontSize="14"
+                        Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
+                        TextColor="Gold" />
                             </VerticalStackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="IrServicio" />
@@ -104,6 +98,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+
 
             <!-- Productos -->
             <Label
@@ -176,7 +172,7 @@
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     Text="{Binding Nombre}"
-                                    TextColor="Black" />
+                                    TextColor="white" />
                                 <Label
                                     FontSize="14"
                                     Text="{Binding Descuento, StringFormat='Descuento: {0}%'}"

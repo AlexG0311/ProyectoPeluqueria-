@@ -1,4 +1,7 @@
 using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Proyecto.Helpers;
@@ -8,69 +11,121 @@ namespace Proyecto
 {
     public partial class Reserva : ContentPage
     {
-        private ApiService _apiService;
+        private readonly ApiService _apiService;
+        private int _selectedEmpleadoId;
 
         public Reserva()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://07de-181-78-20-113.ngrok-free.app"); // Cambia esto a la URL de tu API
+            _apiService = new ApiService("https://fbb5-181-78-20-113.ngrok-free.app");
+            BindingContext = this; // Establecer el contexto de enlace
+            FechaSeleccionada = DateTime.Now;
+
+            if (App.CurrentServicio != null)
+            {
+                Debug.WriteLine($"Reserva iniciada para el servicio: {App.CurrentServicio.Nombre}");
+            }
         }
 
-        private async void InsertarReserva(object sender, EventArgs e)
-        {
-            // Crear un objeto de tipo ReservaDTO para enviar los datos a la API
-            ReservaDTO reserva = LlenarReserva();
+        // Colección para almacenar los empleados disponibles
+        public ObservableCollection<EmpleadoDTO> EmpleadosDisponibles { get; set; } = new ObservableCollection<EmpleadoDTO>();
 
+        // Propiedad para la fecha seleccionada
+        public DateTime FechaSeleccionada { get; set; }
+
+        // Propiedad para la hora seleccionada
+        public TimeSpan HoraSeleccionada { get; set; }
+
+        // Evento para manejar la selección de un empleado
+        private void OnEmpleadoSelected(object sender, SelectionChangedEventArgs e)
+        {
+            var empleadoSeleccionado = e.CurrentSelection.FirstOrDefault() as EmpleadoDTO;
+            if (empleadoSeleccionado != null)
+            {
+                _selectedEmpleadoId = empleadoSeleccionado.idEmpleado;
+                // Mostrar una confirmación visual
+                DisplayAlert("Empleado seleccionado", $"Seleccionaste: {empleadoSeleccionado.Nombre}", "OK");
+            }
+        }
+
+
+
+        // Evento para confirmar la reserva
+        private async void OnConfirmarReserva(object sender, EventArgs e)
+        {
+            if (_selectedEmpleadoId == 0)
+            {
+                await DisplayAlert("Error", "Por favor, seleccione un empleado.", "OK");
+                return;
+            }
+
+            var horaSeleccionada = HoraSeleccionada;
+
+            // Crear el objeto ReservaDTO
+            var reservaDTO = new ReservaDTO
+            {
+                Fecha = FechaSeleccionada,
+                Hora = horaSeleccionada,
+                Cliente_idCliente = (App.CurrentUser as ClienteDTOO)?.idCliente ?? 0, // Obtener el ID del cliente
+                Servicio_idServicio = App.CurrentServicio.IdServicio, // Obtener el servicio seleccionado
+                Empleado_idEmpleado = _selectedEmpleadoId, // ID del empleado seleccionado
+                Estado_idEstado = 1 // Estado "Pendiente"
+            };
+
+            // Enviar la reserva al backend
+            var resultado = await _apiService.PostAsync<ReservaDTO, ReservaDTO>("api/Reservas", reservaDTO);
+            if (resultado != null)
+            {
+                await DisplayAlert("Reserva", "Reserva confirmada exitosamente.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Error", "Hubo un problema al confirmar la reserva.", "Cerrar");
+            }
+        }
+
+        // Evento para manejar el cambio de fecha seleccionada
+        private async void OnFechaSeleccionadaChanged(object sender, EventArgs e)
+        {
+            await ActualizarEmpleadosDisponibles();
+        }
+
+        // Evento para manejar el cambio de hora seleccionada
+        private async void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(TimePicker.Time)) // Verificar si cambió la propiedad Time
+            {
+                HoraSeleccionada = timePicker.Time; // Actualizar la hora seleccionada
+                await ActualizarEmpleadosDisponibles(); // Actualizar empleados disponibles
+            }
+        }
+
+        // Método para actualizar la lista de empleados disponibles
+        private async Task ActualizarEmpleadosDisponibles()
+        {
             try
             {
-                // Llamada al servicio API para registrar la reserva
-                ReservaDTO result = await _apiService.PostAsync<ReservaDTO, ReservaDTO>("api/Reservas", reserva);
+                // Consultar al backend para obtener los empleados disponibles
+                var empleados = await _apiService.GetAsync<List<EmpleadoDTO>>(
+                    $"api/Reservas/EmpleadosDisponibles?fecha={FechaSeleccionada:yyyy-MM-dd}&hora={HoraSeleccionada}&idServicio={App.CurrentServicio.IdServicio}");
 
-                if (result != null && result.idReserva > 0)
+                // Limpiar y actualizar la lista de empleados disponibles
+                EmpleadosDisponibles.Clear();
+                foreach (var empleado in empleados)
                 {
-                    // Mostrar mensaje de éxito
-                    await DisplayAlert("Reserva", "¡Reserva registrada exitosamente!", "Ok");
+                    EmpleadosDisponibles.Add(empleado);
                 }
-                else
+
+                if (!EmpleadosDisponibles.Any())
                 {
-                    // Mostrar mensaje de error si el registro falla
-                    await DisplayAlert("Error", "Hubo un problema al registrar la reserva.", "Cerrar");
+                    await DisplayAlert("Información", "No hay empleados disponibles para la fecha y hora seleccionadas.", "OK");
                 }
             }
             catch (Exception ex)
             {
-                // Manejar errores de red o de la API
-                await DisplayAlert("Error", $"Hubo un problema al registrar la reserva: {ex.Message}", "Cerrar");
+                Console.WriteLine($"Error al obtener empleados disponibles: {ex.Message}");
+                await DisplayAlert("Error", "No se pudieron cargar los empleados disponibles.", "Cerrar");
             }
-        }
-
-        private ReservaDTO LlenarReserva()
-        {
-            // Asegurarse de que haya una fecha seleccionada
-            DateTime fechaSeleccionada = calendar.SelectedDate ?? DateTime.Now;
-
-            return new ReservaDTO
-            {
-            //    Fecha = fechaSeleccionada,
-              //  Hora = HoraPicker.Time,
-                //Cliente_idCliente = int.Parse(ClienteEntry.Text), // Asegúrate de tener el ID del cliente
-       //         Servicio_idServicio = int.Parse(ServicioEntry.Text), // Asegúrate de tener el ID del servicio
-         //       Asignacion_idAsignacion = int.Parse(AsignacionEntry.Text), // ID de la asignación, si aplica
-           //     Estado_idEstado = int.Parse(EstadoEntry.Text) // Estado de la reserva, si aplica
-            };
-        }
-
-        private async void OnCancelarTapped(object sender, EventArgs e)
-        {
-            // Regresar a la página anterior
-            await Navigation.PopAsync();
-        }
-
-        private void OnDateSelected(object sender, DateChangedEventArgs e)
-        {
-            // Este método se ejecuta cuando se selecciona una fecha en el calendario
-            DateTime fechaSeleccionada = e.NewDate;
-            Console.WriteLine("Fecha seleccionada: " + fechaSeleccionada.ToString("yyyy-MM-dd"));
         }
     }
 }

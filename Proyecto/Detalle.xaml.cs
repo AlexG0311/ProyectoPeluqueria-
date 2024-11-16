@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Proyecto.Helpers;
 using Proyecto.Model;
 
@@ -15,7 +16,7 @@ public partial class Detalle : ContentPage
     {
         InitializeComponent();
 
-        _apiService = new ApiService("https://821e-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
+        _apiService = new ApiService("https://fbb5-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
         BindingContext = this;
 
         CargarDatos(); // Carga productos y servicios
@@ -92,8 +93,33 @@ public partial class Detalle : ContentPage
 
     private async void IrServicio(object sender, TappedEventArgs e)
     {
+        var frame = sender as Frame;
+        var servicioSeleccionado = frame?.BindingContext as Servicio;
+        if (servicioSeleccionado != null)
+        {
+            App.CurrentServicio = servicioSeleccionado;
+            Debug.WriteLine($"Servicio seleccionado para reserva: {servicioSeleccionado.Nombre}");
+            await DisplayAlert("Servicio Seleccionado", $"Seleccionaste el servicio: {App.CurrentServicio.Nombre}", "OK");
+        }
+
+        // Navegar a la página de reserva
         await Navigation.PushAsync(new Reserva());
     }
+
+
+    private void OnServicioSelected(object sender, SelectionChangedEventArgs e)
+    {
+        var servicioSeleccionado = e.CurrentSelection.FirstOrDefault() as Servicio;
+        if (servicioSeleccionado != null)
+        {
+            App.CurrentServicio = servicioSeleccionado; // Guardar el servicio seleccionado
+            Debug.WriteLine($"Servicio seleccionado: {servicioSeleccionado.Nombre}");
+            DisplayAlert("Servicio", $"Seleccionaste el servicio: {servicioSeleccionado.Nombre}", "OK");
+        }
+    }
+
+
+    
 
     private void NavigationToPage(ContentPage page)
     {

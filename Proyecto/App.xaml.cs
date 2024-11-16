@@ -13,12 +13,15 @@ namespace Proyecto
         public static FlyoutPage FlyoutPage { get; set; }
 
         public static FlyoutPage InicioEmpleado { get; internal set; }
+        public static IUsuarioDTO CurrentUser { get; set; }
 
+
+        public static Servicio CurrentServicio { get; set; } 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Detalle());
+            MainPage = new NavigationPage(new LoginPage());
         }
     }
 }

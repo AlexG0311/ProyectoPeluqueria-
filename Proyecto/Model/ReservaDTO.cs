@@ -9,12 +9,15 @@ namespace Proyecto.Model
     public class ReservaDTO
     {
         public int idReserva { get; set; }
-        public DateTime Fecha { get; set; }
-        public TimeSpan Hora { get; set; }
-        public int Cliente_idCliente { get; set; }
-        public int Servicio_idServicio { get; set; }
-        public int Asignacion_idAsignacion { get; set; }
-        public int Estado_idEstado { get; set; }
+        public DateTime Fecha { get; set; } // Fecha de la reserva
+        public TimeSpan Hora { get; set; } // Hora de inicio de la reserva
+        public int Cliente_idCliente { get; set; } // ID del cliente que realiza la reserva
+        public int Servicio_idServicio { get; set; } // ID del servicio seleccionado
+        public int Empleado_idEmpleado { get; set; } // ID del empleado asignado a la reserva
+        
+        public int Estado_idEstado { get; set; } // ID del estado de la reserva (Pendiente, Confirmada, etc.)
+        public string Estado { get; set; }
+       
     }
 
 }
