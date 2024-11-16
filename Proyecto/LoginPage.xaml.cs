@@ -13,7 +13,7 @@ namespace Proyecto
         public LoginPage()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://fbb5-181-78-20-113.ngrok-free.app");
+            _apiService = new ApiService("https://ff6e-181-78-20-113.ngrok-free.app");
         }
 
 

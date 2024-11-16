@@ -16,7 +16,7 @@ public partial class Detalle : ContentPage
     {
         InitializeComponent();
 
-        _apiService = new ApiService("https://fbb5-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
+        _apiService = new ApiService("https://ff6e-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
         BindingContext = this;
 
         CargarDatos(); // Carga productos y servicios
