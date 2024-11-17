@@ -11,50 +11,36 @@
         <!-- Barra de búsqueda -->
         <SearchBar Placeholder="Buscar" x:Name="SearchBarCitas" />
 
-        <!-- Colección de citas -->
         <CollectionView ItemsSource="{Binding Citas}" Margin="0,10">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="0,5" Padding="10" CornerRadius="10" HasShadow="True">
-                        <Grid ColumnDefinitions="80,*,Auto" RowDefinitions="Auto,Auto">
-
-                            <!-- Imagen del cliente -->
-                            <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" Grid.RowSpan="2" />
-
-                            <!-- Nombre del cliente -->
-                            <Label Text="{Binding Nombre}" 
-                               FontAttributes="Bold" 
-                               FontSize="16" 
-                               Grid.Column="1" 
-                               VerticalOptions="Center" />
+                    <Frame Margin="0,5" Padding="10" CornerRadius="10" HasShadow="True" BackgroundColor="Gray">
+                        <VerticalStackLayout>
+                            <!-- Nombre completo del cliente -->
+                            <Label Text="{Binding NombreCompleto}" 
+                           FontAttributes="Bold" 
+                           FontSize="16" 
+                           TextColor="White" />
 
                             <!-- Fecha y hora de la cita -->
                             <Label Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy hh:mm tt}'}" 
-                               FontSize="12" 
-                               TextColor="Gray" 
-                               Grid.Column="2"
-                               VerticalOptions="Center" />
+                           FontSize="14" 
+                           TextColor="White" />
 
                             <!-- Estado de la cita -->
-                            <Label Text="{Binding Estado}" 
-                               FontSize="14" 
-                               TextColor="{Binding Estado, Converter={StaticResource EstadoColorConverter}}" 
-                               Grid.Column="1" 
-                               Grid.Row="1" />
-
-                        </Grid>
-
-                        <!-- Navegar a DetalleCitas al hacer tap -->
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="IrCitas" />
-                        </Frame.GestureRecognizers>
+                            <Label Text="{Binding EstadoDescripcion}" 
+                           FontSize="14" 
+                           TextColor="White" />
+                        </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+
 
     </StackLayout>
 </ContentPage>

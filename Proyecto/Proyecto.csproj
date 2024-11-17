@@ -130,6 +130,7 @@
 	<ItemGroup>
 	  <Folder Include="Cliente\" />
 	  <Folder Include="Empleado\" />
+	  <Folder Include="NewFolder\" />
 	</ItemGroup>
 
 </Project>

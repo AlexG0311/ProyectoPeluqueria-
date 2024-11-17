@@ -85,7 +85,7 @@
                         FontAttributes="Bold"
                         FontSize="16"
                         Text="{Binding Nombre}"
-                        TextColor="Black" />
+                        TextColor="white" />
                                 <Label
                         FontSize="14"
                         Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
@@ -107,7 +107,7 @@
                 FontAttributes="Bold"
                 FontSize="24"
                 Margin="0,10"
-                TextColor="Black" />
+                TextColor="white" />
             <CollectionView
                 x:Name="ProductosInicio"
                 Margin="0,0,0,10"
@@ -135,7 +135,7 @@
                                 <Label
                                     FontSize="14"
                                     Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
-                                    TextColor="Gray" />
+                                    TextColor="White" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
@@ -143,12 +143,7 @@
             </CollectionView>
 
             <!-- Promociones -->
-            <Label
-                Text="Promociones"
-                FontAttributes="Bold"
-                FontSize="24"
-                Margin="0,10"
-                TextColor="Black" />
+           
             <CollectionView
                 x:Name="ColleccionPromocion"
                 Margin="0,0,0,10"

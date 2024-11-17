@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Proyecto.Helpers;
@@ -13,7 +14,7 @@ namespace Proyecto
         public LoginPage()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://ff6e-181-78-20-113.ngrok-free.app");
+            _apiService = new ApiService("https://625e-181-78-20-113.ngrok-free.app");
         }
 
 
@@ -33,7 +34,6 @@ namespace Proyecto
 
                 if (loginResponse != null)
                 {
-                    // Verifica el tipo de usuario
                     if (loginResponse.TipoUsuario == "Empleado")
                     {
                         // Guardar el usuario en memoria para la sesión
@@ -46,7 +46,10 @@ namespace Proyecto
                             Telefono = loginResponse.Telefono
                         };
 
-                        await DisplayAlert("Login", "Inicio de sesión exitoso como Empleado", "OK");
+                        // Verificar si el idEmpleado se asignó correctamente
+                        Debug.WriteLine($"Empleado logueado: {loginResponse.Nombre} (ID Empleado: {loginResponse.idEmpleado})");
+                        await DisplayAlert("Debug", $"Empleado logueado: {loginResponse.Nombre}, ID: {loginResponse.idEmpleado}", "OK");
+
                         Application.Current.MainPage = new InicioEmpleado(); // Página principal para empleados
                     }
                     else if (loginResponse.TipoUsuario == "Cliente")

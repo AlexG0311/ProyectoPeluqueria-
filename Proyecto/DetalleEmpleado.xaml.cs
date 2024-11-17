@@ -13,60 +13,6 @@ public partial class DetalleEmpleado : ContentPage
     {
         InitializeComponent();
        
-
-
-
-        // Inicialización de colecciones
-        Citas = new ObservableCollection<Citas>();
-        Servicio = new ObservableCollection<Servicio>();
-
-        // Agregando servicios
-        Servicio.Add(new Servicio
-        {
-            Nombre = "Degradado",
-            Imagen = "dotnet_bot.png",
-            Calificacion = "lorem",
-        });
-
-        Servicio.Add(new Servicio
-        {
-            Nombre = "Taper",
-            Imagen = "corte_peinado.png",
-            Calificacion = "lorem",
-        });
-
-        Servicio.Add(new Servicio
-        {
-            Nombre = "Mohicano",
-            Imagen = "mohicano.jpg",
-            Calificacion = "lorem",
-        });
-
-        Servicio.Add(new Servicio
-        {
-            Nombre = "Fade V",
-            Imagen = "fade_v.jpg",
-            Calificacion = "lorem",
-        });
-
-        ColeccionServicio.ItemsSource = Servicio;
-
-        // Agregando citas
-        Citas.Add(new Citas
-        {
-            Nombre = "Espuma",
-            Imagen = "producto_1.jpg",
-            Descripcion = "Lorem",
-        });
-
-        Citas.Add(new Citas
-        {
-            Nombre = "Gel",
-            Imagen = "producto_2.jpg",
-            Descripcion = "Lorem",
-        });
-
-        ColeccionCitas.ItemsSource = Citas;
     }
 
 
@@ -79,7 +25,7 @@ public partial class DetalleEmpleado : ContentPage
 
     private async void VerMasCitas(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CitaEmpleado(Citas));
+        await Navigation.PushAsync(new CitaEmpleado());
     }
 
     private void IrServicio(object sender, TappedEventArgs e)

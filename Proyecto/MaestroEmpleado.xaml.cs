@@ -13,7 +13,7 @@ public partial class MaestroEmpleado : ContentPage
     }
     private void InicioEmpleado(object sender, EventArgs e)
     {
-        NavigationToPage(new Detalle());
+        NavigationToPage(new DetalleEmpleado());
     }
 
 
@@ -24,22 +24,34 @@ public partial class MaestroEmpleado : ContentPage
 
     private void Cita(object sender, EventArgs e)
     {
-        NavigationToPage(new CitaEmpleado(Citas));
+        NavigationToPage(new CitaEmpleado());
     }
 
     private void Historial(object sender, EventArgs e)
-    {
-        NavigationToPage(new Historial());
+   {
+     NavigationToPage(new Historial());
     }
+
+   
 
     private void Perfil(object sender, EventArgs e)
     {
         NavigationToPage(new Perfil());
     }
 
+
+
+
+
+    private async void VerMaServicios(object sender, EventArgs e)
+    {
+        // Navegar a la página de destino (reemplaza DestinationPage con la página correspondiente)
+        await Navigation.PushAsync(new Servicios());
+    }
+
     private void NavigationToPage(ContentPage page)
     {
-        App.FlyoutPage.Detail.Navigation.PushAsync(page);
-        App.FlyoutPage.IsPresented = false;
+        App.InicioEmpleado.Detail.Navigation.PushAsync(page);
+        App.InicioEmpleado.IsPresented = false;
     }
 }

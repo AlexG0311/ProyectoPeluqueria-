@@ -19,20 +19,13 @@
                  HeightRequest="50"
                  HorizontalOptions="FillAndExpand" />
 
-            <Button Text="Servicios" Clicked="Servicios" 
-                 CornerRadius="20" 
-                 HeightRequest="50"
-                 HorizontalOptions="FillAndExpand" />
 
             <Button Text="Citas" Clicked="Cita" 
                  CornerRadius="20" 
                  HeightRequest="50"
                  HorizontalOptions="FillAndExpand" />
 
-            <Button Text="Historial" Clicked="Historial" 
-                 CornerRadius="20" 
-                 HeightRequest="50"
-                 HorizontalOptions="FillAndExpand" />
+            
 
             <Button Text="Perfil" Clicked="Perfil" 
                  CornerRadius="20" 

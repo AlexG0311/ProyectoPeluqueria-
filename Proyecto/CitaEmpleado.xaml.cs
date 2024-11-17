@@ -1,39 +1,54 @@
-using Proyecto.Model;
+using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
+using Proyecto.Helpers;
+using Proyecto.Model;
 
-namespace Proyecto;
-
-public partial class CitaEmpleado : ContentPage
+namespace Proyecto
 {
-    public ObservableCollection<Citas> Citas { get; set; }
-    public ICommand IrCitasCommand { get; }
-
-    public CitaEmpleado(ObservableCollection<Citas> citas)
+    public partial class CitaEmpleado : ContentPage
     {
-        InitializeComponent();
-        Citas = citas;
-        BindingContext = this;
-    }
+        private readonly ApiService _apiService;
 
-    private void IrCitas(object sender, TappedEventArgs e)
-    {
-        var frame = (Frame)sender;
-        var itemSelected = frame.BindingContext as Citas;
+        // ObservableCollection para enlazar las citas con la vista
+        public ObservableCollection<CitaDTO> Citas { get; set; } = new ObservableCollection<CitaDTO>();
 
-        if (itemSelected != null)
+        public CitaEmpleado()
         {
-            NavigationToPage(new DetallesCitasEmpleado(itemSelected));
+            InitializeComponent();
+            _apiService = new ApiService("https://625e-181-78-20-113.ngrok-free.app"); // Cambia la URL según tu configuración
+            BindingContext = this;
+
+            // Cargar las citas al inicializar la página
+            CargarCitas();
         }
-    }
 
-
-    private void NavigationToPage(ContentPage page)
-    {
-        if (App.FlyoutPage != null)
+        private async void CargarCitas()
         {
-            App.FlyoutPage.Detail.Navigation.PushAsync(page);
-            App.FlyoutPage.IsPresented = false;
+            try
+            {
+                // ID del empleado (esto debería venir del usuario actual autenticado)
+                int idEmpleado = (App.CurrentUser as EmpleadoDTOO)?.idEmpleado ?? 0;
+
+                // Llama al endpoint para obtener las reservas del empleado
+                var citasDesdeApi = await _apiService.GetAsync<List<CitaDTO>>($"api/Reservas/Empleado/{idEmpleado}/Reservas");
+
+                // Limpiar y agregar las citas al ObservableCollection
+                Citas.Clear();
+                foreach (var cita in citasDesdeApi)
+                {
+                    Debug.WriteLine($"Cita cargada: {cita.NombreCompleto}, Fecha: {cita.FechaHora}, Estado: {cita.EstadoDescripcion}");
+                    Citas.Add(cita);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"No se pudieron cargar las citas: {ex.Message}", "Cerrar");
+            }
         }
+
+
     }
 }
