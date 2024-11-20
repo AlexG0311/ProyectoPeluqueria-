@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Proyecto.Helpers;
@@ -18,6 +19,7 @@ namespace Proyecto
             InitializeComponent();
             _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL base según corresponda
             ProductoId = productoId;
+            BindingContext = Producto;
             CargarProductoAsync();
         }
 
@@ -45,69 +47,35 @@ namespace Proyecto
                 await DisplayAlert("Error", "Hubo un problema al obtener el producto. Intenta más tarde.", "Cerrar");
             }
         }
-
-
-        private async void Insertar(object sender, EventArgs e)
+        private void AgregarAlCarrito(object sender, EventArgs e)
         {
-            // Crear un objeto de tipo ReseñaProductoDTO para enviar los datos a la API
-            ReseñaProductoDTO reseñaProducto = LlenarReseñaProducto();
-
-            if (reseñaProducto != null) // Asegúrate de que el objeto no sea null antes de enviarlo
+            if (Producto != null)
             {
-                try
-                {
-                    // Llamada al servicio API para registrar la reseña
-                    ReseñaProductoDTO result = await _apiService.PostAsync<ReseñaProductoDTO, ReseñaProductoDTO>("api/ReseñaProducto", reseñaProducto);
+                var productoExistente = App.CarritoProductos.FirstOrDefault(p => p.idProducto == Producto.idProducto);
 
-                    if (result != null)
-                    {
-                        // Mostrar mensaje de éxito si la reseña se envía correctamente
-                        await DisplayAlert("Reseña", "¡Reseña enviada exitosamente!", "Ok");
-                    }
-                    else
-                    {
-                        // Mostrar mensaje de error si el envío falla
-                        await DisplayAlert("Error", "Hubo un problema al enviar la reseña.", "Cerrar");
-                    }
-                }
-                catch (Exception ex)
+                if (productoExistente != null)
                 {
-                    // Manejar errores de red o de la API
-                    await DisplayAlert("Error", $"Hubo un problema al enviar la reseña: {ex.Message}", "Cerrar");
+                    productoExistente.Cantidad++;
                 }
+                else
+                {
+                    var nuevoProducto = new Producto
+                    {
+                        idProducto = Producto.idProducto,
+                        Nombre = Producto.Nombre,
+                        Descripcion = Producto.Descripcion,
+                        Img = Producto.Img,
+                        Precio = Producto.Precio,
+                        Cantidad = 1
+                    };
+                    App.CarritoProductos.Add(nuevoProducto);
+                }
+
+                DisplayAlert("Carrito", $"{Producto.Nombre} fue agregado al carrito.", "OK");
             }
         }
 
 
-
-        private ReseñaProductoDTO LlenarReseñaProducto()
-        {
-            // Obtén el idCliente del usuario actual (que es el que acaba de iniciar sesión)
-            int clienteId = (App.CurrentUser as ClienteDTOO)?.idCliente ?? 0;
-
-            if (clienteId == 0)
-            {
-                DisplayAlert("Error", "El usuario no está autenticado", "Cerrar");
-                return null; // Si no está autenticado, no puedes enviar la reseña
-            }
-
-            var reseñaProducto = new ReseñaProductoDTO
-            {
-                Estrellas = (int)EstrellasSlider.Value, // Valor de las estrellas del slider
-                Comentario = ComentarioEditor.Text,    // Texto del comentario del editor
-                Producto_idProducto = Producto.idProducto, // ID del producto que se está reseñando
-                Cliente_idCliente = clienteId, // Usar el idCliente del usuario autenticado
-            };
-
-            // Verificar si los campos esenciales no están vacíos
-            if (string.IsNullOrEmpty(reseñaProducto.Comentario) || reseñaProducto.Estrellas == 0)
-            {
-                DisplayAlert("Error", "Debe completar todos los campos de la reseña.", "Cerrar");
-                return null; // No enviar la reseña si los campos están vacíos
-            }
-
-            return reseñaProducto;
-        }
 
 
     }

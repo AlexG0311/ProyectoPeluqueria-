@@ -8,6 +8,7 @@ namespace Proyecto.Model
         public int idProducto { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
+        public string Descripcion { get; set; }
         public string Img { get; set; }
 
         private int cantidad;
