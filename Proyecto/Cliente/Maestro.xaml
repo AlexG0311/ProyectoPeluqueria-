@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Proyecto.Maestro"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Maestro">
+    <ContentPage.Content>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="25"
+            VerticalOptions="CenterAndExpand">
+
+            <!--  Contenedor para imagen de perfil  -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                <!--  Imagen de perfil  -->
+                <Frame
+                    Padding="5"
+                    BackgroundColor="White"
+                    BorderColor="#E0E0E0"
+                    CornerRadius="60"
+                    HasShadow="True"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="110"
+                        Source="dotnet_bot.png"
+                        WidthRequest="110" />
+                </Frame>
+
+                <!--  Texto de bienvenida  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="¡Hola!"
+                    TextColor="White" />
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="¿Qué deseas hacer hoy?"
+                    TextColor="White" />
+            </VerticalStackLayout>
+
+            <!--  Botones estilizados  -->
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="#38394A"
+                CornerRadius="30"
+                HasShadow="True">
+                <Button
+                    BackgroundColor="Transparent"
+                    CornerRadius="30"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="Inicio"
+                    Clicked="IrInicio"
+                    TextColor="#FFD700" />
+            </Frame>
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="#38394A"
+                CornerRadius="30"
+                HasShadow="True">
+                <Button
+                    BackgroundColor="Transparent"
+                    CornerRadius="30"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="Carrito"
+                    Clicked="IrCarrito"
+                    TextColor="#FFD700" />
+            </Frame>
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="#38394A"
+                CornerRadius="30"
+                HasShadow="True">
+                <Button
+                    BackgroundColor="Transparent"
+                    CornerRadius="30"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="Compras"
+                    TextColor="#FFD700" />
+            </Frame>
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="#38394A"
+                CornerRadius="30"
+                HasShadow="True">
+                <Button
+                    BackgroundColor="Transparent"
+                    CornerRadius="30"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="Perfil"
+                    Clicked="IrPerfil"
+                    TextColor="#FFD700" />
+            </Frame>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Proyecto.Reserva"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+    Title="Reserva Cita"
+    NavigationPage.HasNavigationBar="True"
+    BackgroundColor="#1E1E2C">
+    <!-- Fondo oscuro moderno -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="Reserva tu Cita"
+                TextColor="#FFD700" />
+            <!-- Amarillo Dorado -->
+
+            <!-- Calendario para seleccionar fecha -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Seleccione una fecha:"
+                TextColor="#FFFFFF" />
+            <!-- Blanco -->
+            <Frame
+                BackgroundColor="#FFFFFF" 
+               CornerRadius="10"
+               Padding="10"
+               HasShadow="True">
+                <controls:Calendar
+                    x:Name="calendar"
+                    HorizontalOptions="Fill"
+                    MonthLabelColor="#333333" 
+                   SelectedDate="{Binding FechaSeleccionada, Mode=TwoWay}"
+                    SelectedDayBackgroundColor="#007BFF"
+                  
+                  VerticalOptions="Fill"
+                   YearLabelColor="#333333"
+                  
+                    BackgroundColor="Transparent" />
+                   
+            </Frame>
+
+            <!-- Selección de hora -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Seleccione la hora:"
+                TextColor="#FFFFFF"
+                Margin="0,10,0,0" />
+            <TimePicker
+                x:Name="timePicker"
+                TextColor="#FFD700"
+                BackgroundColor="#28293E"
+                HeightRequest="50"
+              
+                PropertyChanged="TimePicker_PropertyChanged" />
+
+            <!-- Lista de empleados -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Seleccione el empleado:"
+                TextColor="#FFFFFF"
+                Margin="0,20,0,0" />
+            <CollectionView
+                x:Name="Collection"
+                ItemsLayout="HorizontalList"
+                ItemsSource="{Binding EmpleadosDisponibles}"
+                SelectionChanged="OnEmpleadoSelected"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="5"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Frame
+                                Padding="2"
+                                BorderColor="#FFD700"
+                                CornerRadius="50"
+                                BackgroundColor="#28293E"
+                                HasShadow="True">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="70"
+                                    Source="{Binding Imagen, FallbackValue='empleado_placeholder.jpg'}"
+                                    WidthRequest="70" />
+                            </Frame>
+                            <Label
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Nombre}"
+                                TextColor="#FFD700" />
+                            <!-- Amarillo Dorado -->
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Botón para confirmar la reserva -->
+            <Button
+                Text="Confirmar Reserva"
+                FontAttributes="Bold"
+                TextColor="#FFFFFF"
+                BackgroundColor="#007BFF"
+                CornerRadius="25"
+                HeightRequest="50"
+                Margin="0,20,0,0"
+                Clicked="OnConfirmarReserva" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

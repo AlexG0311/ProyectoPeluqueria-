@@ -1,0 +1,81 @@
+<ContentPage
+    x:Class="Proyecto.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#28293E"
+    NavigationPage.HasNavigationBar="False">
+
+    <StackLayout
+        Padding="40"
+        Spacing="25"
+        VerticalOptions="Center">
+
+        <!-- Título -->
+        <Label
+            FontAttributes="Bold"
+            FontSize="32"
+            HorizontalOptions="Center"
+            Text="Iniciar Sesión"
+            TextColor="#FFD700" />
+
+        <!-- Campo de usuario -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="CorreoEntry"
+                Margin="10,0"
+                FontSize="16"
+                BackgroundColor="Transparent"
+                Placeholder="Correo Electrónico"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Campo de contraseña -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="PasswordEntry"
+                Margin="10,0"
+                FontSize="16"
+                IsPassword="True"
+                Placeholder="Contraseña"
+                BackgroundColor="Transparent"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Botón de inicio de sesión -->
+        <Button
+            BackgroundColor="#FFD700"
+            Clicked="Login"
+            CornerRadius="25"
+            FontAttributes="Bold"
+            HeightRequest="55"
+            HorizontalOptions="Center"
+            Text="Iniciar Sesión"
+            TextColor="White"
+            WidthRequest="250" />
+
+        <!-- Enlace para registrarse -->
+        <Label
+            FontAttributes="Bold"
+            FontSize="14"
+            HorizontalOptions="Center"
+            Text="¿No tienes cuenta? Registrarse"
+            TextColor="#A67C52">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Registrar" />
+            </Label.GestureRecognizers>
+        </Label>
+
+    </StackLayout>
+</ContentPage>

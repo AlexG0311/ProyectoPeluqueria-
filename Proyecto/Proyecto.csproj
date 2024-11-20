@@ -80,6 +80,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Cliente\FacturaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Cliente\PerfilCliente.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Empleado\PerfilEmpleado.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Reserva.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -128,8 +137,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Cliente\" />
-	  <Folder Include="Empleado\" />
 	  <Folder Include="NewFolder\" />
 	</ItemGroup>
 

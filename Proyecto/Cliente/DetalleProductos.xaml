@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.DetalleProductos"
+             Title="Detalle del Producto">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+
+            <!-- Imagen del producto -->
+            <Image Source="{Binding Producto.Imagen}"
+                   HeightRequest="250"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center"
+                   Margin="10" />
+
+            <!-- Nombre del producto -->
+            <Label Text="{Binding Producto.Nombre}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10,5" />
+
+            <!-- Descripción del producto -->
+            <Label Text="{Binding Producto.Descripcion}"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"
+                   Margin="10,5" />
+
+            <!-- Precio del producto -->
+            <Label Text="{Binding Producto.Precio, StringFormat='Precio: {0:C}'}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="Green"
+                   HorizontalOptions="Center"
+                   Margin="10,5" />
+
+
+
+
+
+            <!-- Formulario de calificación -->
+            <Frame IsVisible="True" BackgroundColor="LightGray" Padding="10" Margin="10" CornerRadius="10">
+                <VerticalStackLayout>
+                    <Label Text="Califica este producto:" FontSize="Medium" FontAttributes="Bold" />
+                    <!-- Slider para calificación -->
+                    <Slider x:Name="EstrellasSlider" Minimum="1" Maximum="5" Value="1" />
+                    <!-- Muestra el valor de las estrellas seleccionadas -->
+                    <Label Text="{Binding EstrellasSlider.Value, StringFormat='Estrellas: {0:F1}'}" />
+                    <!-- Editor para comentario -->
+                    <Editor x:Name="ComentarioEditor" Placeholder="Escribe tu comentario aquí" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botón para enviar la reseña -->
+            <Button
+                BackgroundColor="LightGray"
+                Clicked="Insertar"
+                Text="Enviar reseña"
+                TextColor="Black" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -16,8 +16,9 @@ public partial class Detalle : ContentPage
     {
         InitializeComponent();
 
-        _apiService = new ApiService("https://625e-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
+        _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
         BindingContext = this;
+
 
         CargarDatos(); // Carga productos y servicios
     }
@@ -91,6 +92,23 @@ public partial class Detalle : ContentPage
         await Navigation.PushAsync(new Productos());
     }
 
+    private async void IrProductos(object sender, EventArgs e)
+    {
+        // Obtener el producto seleccionado desde el contexto del elemento
+        var frame = sender as Frame;
+        var productoSeleccionado = frame?.BindingContext as Producto;
+
+        if (productoSeleccionado != null)
+        {
+            // Navegar a la página de detalles pasando el ID del producto seleccionado
+            await Navigation.PushAsync(new DetalleProductos(productoSeleccionado.idProducto));
+        }
+        else
+        {
+            await DisplayAlert("Error", "No se pudo obtener la información del producto seleccionado.", "OK");
+        }
+    }
+
     private async void IrServicio(object sender, TappedEventArgs e)
     {
         var frame = sender as Frame;
@@ -106,6 +124,31 @@ public partial class Detalle : ContentPage
         await Navigation.PushAsync(new Reserva());
     }
 
+    private async void AgregarAlCarrito(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var productoSeleccionado = button?.BindingContext as Producto;
+
+        if (productoSeleccionado != null)
+        {
+            // Verifica si el producto ya está en el carrito
+            var productoExistente = App.CarritoProductos.FirstOrDefault(p => p.idProducto == productoSeleccionado.idProducto);
+
+            if (productoExistente == null)
+            {
+                // Si no está, agrégalo al carrito con cantidad inicial 1
+                productoSeleccionado.Cantidad = 1;
+                App.CarritoProductos.Add(productoSeleccionado);
+            }
+            else
+            {
+                // Si ya está, aumenta la cantidad
+                productoExistente.Cantidad++;
+            }
+
+            await DisplayAlert("Carrito", $"Añadido al carrito: {productoSeleccionado.Nombre}", "OK");
+        }
+    }
 
     private void OnServicioSelected(object sender, SelectionChangedEventArgs e)
     {
@@ -117,9 +160,6 @@ public partial class Detalle : ContentPage
             DisplayAlert("Servicio", $"Seleccionaste el servicio: {servicioSeleccionado.Nombre}", "OK");
         }
     }
-
-
-    
 
     private void NavigationToPage(ContentPage page)
     {

@@ -1,3 +1,4 @@
+using Proyecto.Empleado;
 using Proyecto.Model;
 using System.Collections.ObjectModel;
 
@@ -36,7 +37,7 @@ public partial class MaestroEmpleado : ContentPage
 
     private void Perfil(object sender, EventArgs e)
     {
-        NavigationToPage(new Perfil());
+        NavigationToPage(new PerfilEmpleado());
     }
 
 

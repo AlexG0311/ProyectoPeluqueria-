@@ -1,0 +1,112 @@
+<ContentPage
+    x:Class="Proyecto.CarritoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="ThisPage"
+    Title="Carrito"
+    BackgroundColor="#1E1E2C">
+    <VerticalStackLayout Padding="20">
+
+        <Label
+            Text="Carrito de Compras"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            TextColor="#FFD700" />
+
+        <CollectionView
+            ItemsSource="{Binding CarritoProductos}"
+            Margin="0,20">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Margin="10"
+                        Padding="10"
+                        BackgroundColor="#28293E"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <Grid ColumnDefinitions="100,*,Auto" RowDefinitions="Auto,Auto">
+                            <!-- Imagen del producto -->
+                            <Image
+                                Source="{Binding Img}"
+                                HeightRequest="70"
+                                WidthRequest="70"
+                                Aspect="AspectFill"
+                                Grid.RowSpan="2" />
+
+                            <!-- Detalles del producto -->
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label
+                                    Text="{Binding Nombre}"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="White" />
+                                <Label
+                                    Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
+                                    FontSize="14"
+                                    TextColor="LightGreen" />
+                            </VerticalStackLayout>
+
+                            <!-- Controles para modificar cantidad -->
+                            <HorizontalStackLayout Grid.Column="2" VerticalOptions="Center" Spacing="5">
+                                <Button
+                                    Text="-"
+                                    BackgroundColor="#FF3B3B"
+                                    TextColor="White"
+                                    WidthRequest="50"
+                                    HeightRequest="50"
+                                    Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.DisminuirCantidadCommand}"
+                                    CommandParameter="{Binding .}" />
+                                <Label
+                                    Text="{Binding Cantidad}"
+                                    FontSize="14"
+                                    TextColor="White"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    Text="+"
+                                    BackgroundColor="#FFD700"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="50"
+                                    Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.AumentarCantidadCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout>
+
+                            <!-- Botón para eliminar el producto -->
+                            <Button
+                                Text="Eliminar"
+                                BackgroundColor="#FF3B3B"
+                                TextColor="White"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.EliminarProductoCommand}"
+                                CommandParameter="{Binding .}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label
+            Text="{Binding Total, StringFormat='Total: ${0:F2}'}"
+            FontSize="20"
+            FontAttributes="Bold"
+            TextColor="LightGreen"
+            HorizontalOptions="Center"
+            Margin="0,10" />
+
+        <Button
+            Text="Pagar"
+            BackgroundColor="#FFD700"
+            TextColor="Black"
+            FontSize="16"
+            FontAttributes="Bold"
+            CornerRadius="10"
+            HeightRequest="50"
+            Command="{Binding PagarCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

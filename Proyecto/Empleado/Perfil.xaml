@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Proyecto.Perfil"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Perfil"
+    BackgroundColor="#D9C3F7">
+    <StackLayout Spacing="0">
+        <!--  Sección morada  -->
+        <StackLayout Padding="20" BackgroundColor="#D9C3F7">
+            <Label
+                Margin="0,40,0,10"
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="Nombre"
+                VerticalOptions="Start" />
+            <Frame
+                BackgroundColor="White"
+                BorderColor="LightGray"
+                CornerRadius="50"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="120">
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="profile_placeholder.png"
+                    WidthRequest="100" />
+            </Frame>
+        </StackLayout>
+
+        <!--  Sección blanca ovalada  -->
+        <Frame
+            Padding="20"
+            BackgroundColor="White"
+            CornerRadius="300"
+            HasShadow="False">
+            <StackLayout Spacing="10">
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button
+                        Margin="20,10,0,0"
+                        BackgroundColor="#E0E0E0"
+                        BorderColor="LightBlue"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        HeightRequest="40"
+                        Text="Editar"
+                        WidthRequest="100" />
+                    <Button
+                        Margin="0,10,20,0"
+                        BackgroundColor="#E0E0E0"
+                        BorderColor="LightBlue"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        HeightRequest="40"
+                        Text="Eliminar"
+                        WidthRequest="100" />
+                </StackLayout>
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="Correo: JuanPerez@gmail.com"
+                    VerticalOptions="End" />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

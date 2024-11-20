@@ -18,7 +18,7 @@ namespace Proyecto
         public CitaEmpleado()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://625e-181-78-20-113.ngrok-free.app"); // Cambia la URL según tu configuración
+            _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL según tu configuración
             BindingContext = this;
 
             // Cargar las citas al inicializar la página

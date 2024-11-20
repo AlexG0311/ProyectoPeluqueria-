@@ -11,6 +11,8 @@ public partial class Servicios : ContentPage
     public ObservableCollection<Producto> ProductosIndividuales { get; set; }
     public Servicios()
 	{
+
+
 		InitializeComponent();
 
        

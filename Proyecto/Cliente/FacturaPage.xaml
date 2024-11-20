@@ -1,0 +1,53 @@
+<ContentPage
+    x:Class="Proyecto.Cliente.FacturaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#1E1E2C"
+    Title="Factura">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <!-- Título -->
+            <Label
+                Text="Factura de Compra"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center" />
+
+            <!-- Fecha de la compra -->
+            <Label
+                Text="{Binding FechaCompra}"
+                FontSize="16"
+                TextColor="White"
+                HorizontalOptions="Center"
+                Margin="0,10" />
+
+            <!-- Listado de productos -->
+            <CollectionView ItemsSource="{Binding ProductosComprados}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5" Padding="10" BackgroundColor="#28293E" CornerRadius="10" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nombre}" FontSize="18" TextColor="White" />
+                                <Label Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}" FontSize="16" TextColor="LightGreen" />
+                                <Label Text="Cantidad: {Binding Cantidad}" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Total de la compra -->
+            <Label
+                Text="Total: ${Binding TotalCompra, StringFormat='{0:F2}'}"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Gold"
+                HorizontalOptions="EndAndExpand"
+                Margin="0,20" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

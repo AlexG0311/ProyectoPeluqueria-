@@ -17,7 +17,7 @@ namespace Proyecto
         public Reserva()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://625e-181-78-20-113.ngrok-free.app");
+            _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app");
             BindingContext = this; // Establecer el contexto de enlace
             FechaSeleccionada = DateTime.Now;
 

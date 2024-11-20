@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Proyecto.Empleado.PerfilEmpleado"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Perfil del Empleado"
+    NavigationPage.IconColor="Gold"
+    BackgroundColor="#28293E"
+    
+    >
+    <ContentPage.Content>
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="20">
+
+            <!-- Avatar de perfil con opción para cambiar imagen -->
+            <Frame
+                Padding="0"
+                BackgroundColor="#FFD700"
+                BorderColor="#FFD700"
+                CornerRadius="60"
+                HasShadow="True"
+                HeightRequest="120"
+                WidthRequest="120"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Image
+                    x:Name="AvatarImage"
+                    Aspect="AspectFill"
+                    Source="banner.jpg"
+                    HeightRequest="110"
+                    WidthRequest="110" />
+            </Frame>
+
+            <!-- Botón para cambiar la imagen de perfil -->
+            <Button
+                Text="Cambiar Avatar"
+                BackgroundColor="Transparent"
+                BorderColor="#FFD700"
+                BorderWidth="2"
+                TextColor="#FFD700"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="200"
+                Clicked="OnChangeAvatarClicked" />
+
+            <!-- Nombre del usuario -->
+            <Label
+                Text="{Binding Nombre}"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#FFD700" />
+
+            <!-- Correo del usuario -->
+            <Label
+                Text="{Binding Correo}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                TextColor="#FFFFFF" />
+
+            <!-- Botón para editar perfil -->
+            <Button
+                Text="Editar Perfil"
+                BackgroundColor="Transparent"
+                BorderColor="#FFD700"
+                BorderWidth="2"
+                TextColor="#FFD700"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="200"
+                Clicked="OnEditProfileClicked" />
+
+            <!-- Botón para cerrar sesión -->
+            <Button
+                Text="Cerrar Sesión"
+                BackgroundColor="Transparent"
+                BorderColor="#FFD700"
+                BorderWidth="2"
+                TextColor="#FFD700"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="200"
+                Clicked="OnLogOutClicked" />
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

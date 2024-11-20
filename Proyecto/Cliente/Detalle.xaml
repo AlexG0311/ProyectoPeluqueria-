@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Proyecto.Detalle"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Detalle">
-    <ScrollView>
-        <VerticalStackLayout Padding="10">
+    BackgroundColor="#1E1E2C"
+    NavigationPage.HasNavigationBar="True">
+    <!--  Fondo oscuro elegante  -->
 
-            <!-- Banner con barra de búsqueda y carrito -->
-            <Grid Padding="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="0">
+
+            <!--  Banner con barra de búsqueda y carrito  -->
+            <Grid Padding="0">
                 <Image
                     Grid.RowSpan="2"
+                    Margin="0,0,0,0"
                     Aspect="AspectFill"
                     HeightRequest="200"
                     HorizontalOptions="FillAndExpand"
-                    Opacity="0.3"
+                    Opacity="0.2"
                     Source="banner.jpg"
                     VerticalOptions="FillAndExpand"
                     WidthRequest="450" />
@@ -25,71 +28,97 @@
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
 
-                    <Frame
-                        Grid.Column="0"
-                        Padding="0"
-                        BackgroundColor="White"
-                        CornerRadius="20"
-                        HasShadow="False"
-                        VerticalOptions="Center">
-                        <SearchBar
-                            BackgroundColor="Transparent"
-                            HeightRequest="40"
-                            Placeholder="Buscar"
-                            TextColor="Black" />
-                    </Frame>
+                    <Label 
+                        FontSize="30"
+                        TextColor="#FFD700"
+                        FontAttributes="Bold"
+                        
+                       
+                        Margin="40,60"
+                        
+                        Text="BIENVENIDOS"/>
 
                     <Frame
                         x:Name="CarritoFrame"
                         Grid.Column="1"
                         Padding="5"
-                        BackgroundColor="White"
-                        BorderColor="Gray"
+                        BackgroundColor="#FFD700"
+                        BorderColor="Gold"
+                        Margin="0,0,0,130"
                         CornerRadius="25"
                         HasShadow="True"
                         HeightRequest="50"
                         WidthRequest="50">
-                        <Image
-                            HeightRequest="30"
-                            Source="carrito.png"
-                            WidthRequest="30">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnCartTapped" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                        <Grid>
+                            <Image
+                                HeightRequest="30"
+                                Source="carrito.png"
+                                WidthRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCartTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <!--  Label para el contador  -->
+                            <Label
+                                
+                                
+                                FontSize="19"
+                                HeightRequest="20"
+                                HorizontalOptions="End"
+                                Margin="10,0"
+                                IsVisible="{Binding TotalProductosCarrito, Converter={StaticResource GreaterThanZeroConverter}}"
+                                Text="{Binding TotalProductosCarrito}"
+                                TextColor="Red"
+                               FontAttributes="Bold"
+                                VerticalOptions="Start"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="20" />
+                        </Grid>
                     </Frame>
+
                 </Grid>
             </Grid>
 
-            <!-- Servicios -->
+            <!--  Servicios  -->
+            <Label
+                Margin="0,10"
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="Servicios"
+                TextColor="#FFD700" />
+            <!--  Amarillo Dorado  -->
+
             <CollectionView
                 x:Name="ColleccionServicio"
                 Margin="0,0,0,10"
                 ItemsLayout="HorizontalList"
-    ItemsSource="{Binding Servicios}">
+                ItemsSource="{Binding Servicios}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
-                Margin="5"
-                Padding="10"
-                CornerRadius="10"
-                HasShadow="True"
-                HeightRequest="250"
-                WidthRequest="170">
+                            Margin="5"
+                            Padding="10"
+                            BackgroundColor="#28293E"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            HeightRequest="250"
+                            WidthRequest="170">
                             <VerticalStackLayout>
                                 <Image
-                        Aspect="AspectFill"
-                        HeightRequest="150"
-                        Source="{Binding Imagen}" />
+                                    Aspect="AspectFill"
+                                    HeightRequest="150"
+                                    Source="{Binding Img}" />
                                 <Label
-                        FontAttributes="Bold"
-                        FontSize="16"
-                        Text="{Binding Nombre}"
-                        TextColor="white" />
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding Nombre}"
+                                    TextColor="#FFD700" />
+                                <!--  Amarillo Dorado  -->
                                 <Label
-                        FontSize="14"
-                        Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
-                        TextColor="Gold" />
+                                    FontSize="14"
+                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
+                                    TextColor="Gold" />
                             </VerticalStackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="IrServicio" />
@@ -99,15 +128,13 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-
-
-            <!-- Productos -->
+            <!--  Productos  -->
             <Label
-                Text="Productos"
+                Margin="0,10"
                 FontAttributes="Bold"
                 FontSize="24"
-                Margin="0,10"
-                TextColor="white" />
+                Text="Productos"
+                TextColor="#FFD700" />
             <CollectionView
                 x:Name="ProductosInicio"
                 Margin="0,0,0,10"
@@ -118,6 +145,7 @@
                         <Frame
                             Margin="5"
                             Padding="10"
+                            BackgroundColor="#28293E"
                             CornerRadius="10"
                             HasShadow="True"
                             HeightRequest="250"
@@ -131,19 +159,37 @@
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     Text="{Binding Nombre}"
-                                    TextColor="Black" />
+                                    TextColor="#FFFFFF" />
+                                <!--  Blanco  -->
                                 <Label
                                     FontSize="14"
                                     Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
-                                    TextColor="White" />
+                                    TextColor="LightGreen" />
+                                <!--  Verde Claro  -->
+                                <Button
+                                    BackgroundColor="#FFD700"
+                                    Clicked="AgregarAlCarrito"
+                                    CommandParameter="{Binding}"
+                                    Text="Añadir al Carrito"
+                                    TextColor="#000000" />
+
                             </VerticalStackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IrProductos" />
+                            </Frame.GestureRecognizers>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!-- Promociones -->
-           
+
+
+            <Label
+                Margin="0,10"
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="Promociones"
+                TextColor="#FFD700" />
             <CollectionView
                 x:Name="ColleccionPromocion"
                 Margin="0,0,0,10"
@@ -154,6 +200,7 @@
                         <Frame
                             Margin="5"
                             Padding="10"
+                            BackgroundColor="#28293E"
                             CornerRadius="10"
                             HasShadow="True"
                             HeightRequest="250"
@@ -167,11 +214,11 @@
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     Text="{Binding Nombre}"
-                                    TextColor="white" />
+                                    TextColor="#FFD700" />
                                 <Label
                                     FontSize="14"
                                     Text="{Binding Descuento, StringFormat='Descuento: {0}%'}"
-                                    TextColor="Green" />
+                                    TextColor="LightGreen" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

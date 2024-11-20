@@ -1,18 +1,51 @@
 
+using Proyecto.Helpers;
 using Proyecto.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Proyecto;
 
 public partial class DetalleEmpleado : ContentPage
 {
-    public ObservableCollection<Citas> Citas { get; set; }
+
+    private readonly ApiService _apiService;
+
+    // ObservableCollection para enlazar las citas con la vista
+    public ObservableCollection<CitaDTO> Citas { get; set; } = new ObservableCollection<CitaDTO>();
+   
     public ObservableCollection<Servicio> Servicio { get; set; }  // Cambié el nombre a "Servicios" para mayor claridad
 
     public DetalleEmpleado()
     {
         InitializeComponent();
-       
+        _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL según tu configuración
+        BindingContext = this;
+        CargarCitas();
+    }
+
+    private async void CargarCitas()
+    {
+        try
+        {
+            // ID del empleado (esto debería venir del usuario actual autenticado)
+            int idEmpleado = (App.CurrentUser as EmpleadoDTOO)?.idEmpleado ?? 0;
+
+            // Llama al endpoint para obtener las reservas del empleado
+            var citasDesdeApi = await _apiService.GetAsync<List<CitaDTO>>($"api/Reservas/Empleado/{idEmpleado}/Reservas");
+
+            // Limpiar y agregar las citas al ObservableCollection
+            Citas.Clear();
+            foreach (var cita in citasDesdeApi)
+            {
+                Debug.WriteLine($"Cita cargada: {cita.NombreCompleto}, Fecha: {cita.FechaHora}, Estado: {cita.EstadoDescripcion}");
+                Citas.Add(cita);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"No se pudieron cargar las citas: {ex.Message}", "Cerrar");
+        }
     }
 
 

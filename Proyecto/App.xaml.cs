@@ -9,14 +9,15 @@ namespace Proyecto
 
         public static ObservableCollection<Producto> ProductosCombos;
 
+        public static ObservableCollection<Producto> CarritoProductos { get; set; } = new ObservableCollection<Producto>();
 
         public static FlyoutPage FlyoutPage { get; set; }
 
         public static FlyoutPage InicioEmpleado { get; internal set; }
         public static IUsuarioDTO CurrentUser { get; set; }
 
+        public static Servicio CurrentServicio { get; set; }
 
-        public static Servicio CurrentServicio { get; set; } 
         public App()
         {
             InitializeComponent();

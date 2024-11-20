@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Proyecto"
              x:Class="Proyecto.App">
     <Application.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
@@ -11,4 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+
+
+ 
 </Application>

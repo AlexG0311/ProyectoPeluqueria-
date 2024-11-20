@@ -1,0 +1,140 @@
+<ContentPage
+    x:Class="Proyecto.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#28293E"
+    NavigationPage.HasNavigationBar="False">
+
+    <StackLayout
+        Padding="40"
+        Spacing="25"
+        VerticalOptions="Center">
+
+        <!-- Título -->
+        <Label
+            FontAttributes="Bold"
+            FontSize="32"
+            HorizontalOptions="Center"
+            Text="Registrar"
+            TextColor="#FFD700" />
+
+        <!-- Campo de nombre -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="NombreEntry"
+                Margin="10,0"
+                FontSize="16"
+                Placeholder="Nombre"
+                Visual="Material"
+                BackgroundColor="Transparent"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Campo de apellidos -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="ApellidosEntry"
+                Margin="10,0"
+                FontSize="16"
+                Placeholder="Apellidos"
+                BackgroundColor="Transparent"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Campo de correo -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="CorreoEntry"
+                Margin="10,0"
+                FontSize="16"
+                Keyboard="Email"
+                BackgroundColor="Transparent"
+                Placeholder="Correo"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Campo de contraseña -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="PasswordEntry"
+                Margin="10,0"
+                FontSize="16"
+                IsPassword="True"
+                BackgroundColor="Transparent"
+                Placeholder="Contraseña"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Campo de teléfono -->
+        <Frame
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HeightRequest="55">
+            <Entry
+                x:Name="TelefonoEntry"
+                Margin="10,0"
+                FontSize="16"
+                Placeholder="Teléfono"
+                BackgroundColor="Transparent"
+                PlaceholderColor="#A67C52"
+                TextColor="#4A2C2A" />
+        </Frame>
+
+        <!-- Botón de registro -->
+        <Button
+            BackgroundColor="#FFD700"
+            Clicked="Insertar"
+            CornerRadius="25"
+            FontAttributes="Bold"
+            HeightRequest="55"
+            HorizontalOptions="Center"
+            Text="Registrarse"
+            TextColor="White"
+            WidthRequest="250" />
+
+        <!-- Enlace para regresar al inicio de sesión -->
+        <Label
+            HorizontalOptions="Center"
+            FontSize="14"
+            TextColor="White">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        FontAttributes="Bold"
+                        Text="¿Ya tienes cuenta? Inicia sesión"
+                        TextColor="#A67C52" />
+                </FormattedString>
+            </Label.FormattedText>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLoginTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+
+</ContentPage>

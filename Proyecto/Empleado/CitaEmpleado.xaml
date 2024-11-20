@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto.CitaEmpleado"
+             BackgroundColor="#1E1E2C"
+             Title="CitaEmpleado">
+    <ScrollView>
+        <StackLayout Padding="20">
+
+        <!-- Título de la página -->
+        <Label Text="Mis citas" FontSize="Title"    TextColor="#FFD700" FontAttributes="Bold" HorizontalOptions="Center" />
+
+        <!-- Barra de búsqueda -->
+        <SearchBar Placeholder="Buscar" x:Name="SearchBarCitas" />
+        <VerticalStackLayout>
+           
+            <CollectionView ItemsSource="{Binding Citas}" Margin="20,10">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                Margin="0,5"
+                Padding="15"
+                CornerRadius="15"
+                HasShadow="True"
+                BackgroundColor="#38394A">
+                        <VerticalStackLayout Spacing="5">
+                            <!-- Nombre completo del cliente -->
+                            <Label
+                        Text="{Binding NombreCompleto}"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        TextColor="#FFD700" />
+
+                            <!-- Fecha y hora de la cita -->
+                            <Label
+                        Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy hh:mm tt}'}"
+                        FontSize="14"
+                        TextColor="#FFFFFF" />
+
+                            <!-- Estado de la cita -->
+                            <Frame
+                        Padding="5"
+                        BackgroundColor="{Binding EstadoColor}"
+                        CornerRadius="10">
+                                <Label
+                            Text="{Binding EstadoDescripcion}"
+                            FontSize="12"
+                            TextColor="Green"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+       
+        </VerticalStackLayout>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

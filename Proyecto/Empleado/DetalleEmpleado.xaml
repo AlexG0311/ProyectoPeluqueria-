@@ -1,0 +1,98 @@
+<ContentPage
+    x:Class="Proyecto.DetalleEmpleado"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#28293E"
+    Title="Citas">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="0">
+
+            <!-- Imagen de cabecera con superposición y barra de búsqueda -->
+            <Grid>
+                <!-- Imagen de fondo -->
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="150"
+                    Source="banner.jpg"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" />
+
+                <!-- Superposición para oscurecer la imagen -->
+                <BoxView
+                    BackgroundColor="#000000"
+                    Opacity="0.5"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" />
+                    
+               
+            </Grid>
+
+            <!-- Título de la sección y botón "Ver todo" -->
+            <HorizontalStackLayout Padding="20,10,20,0" VerticalOptions="End" Spacing="10">
+                <Label
+                    Text="Citas"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    TextColor="#FFD700"
+                    HorizontalOptions="StartAndExpand" />
+                <Label
+                    Text="Ver todo"
+                    FontSize="14"
+                    TextColor="#FFD700"
+                    FontAttributes="Bold"
+                    Margin="190,0,0,7"
+                    VerticalTextAlignment="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VerMasCitas" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+            <!-- Colección de citas -->
+            <CollectionView ItemsSource="{Binding Citas}" Margin="20,10">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,5"
+                            Padding="15"
+                            CornerRadius="15"
+                            HasShadow="True"
+                            BackgroundColor="#38394A">
+                            <VerticalStackLayout Spacing="5">
+                                <!-- Nombre completo del cliente -->
+                                <Label
+                                    Text="{Binding NombreCompleto}"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="#FFD700" />
+
+                                <!-- Fecha y hora de la cita -->
+                                <Label
+                                    Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy hh:mm tt}'}"
+                                    FontSize="14"
+                                    TextColor="#FFFFFF" />
+
+                                <!-- Estado de la cita -->
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="{Binding EstadoColor}"
+                                    CornerRadius="10">
+                                    <Label
+                                        Text="{Binding EstadoDescripcion}"
+                                        FontSize="12"
+                                        TextColor="Green"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
