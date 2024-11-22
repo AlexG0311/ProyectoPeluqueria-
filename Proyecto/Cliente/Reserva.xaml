@@ -33,6 +33,7 @@
                CornerRadius="10"
                Padding="10"
                HasShadow="True">
+                
                 <controls:Calendar
                     x:Name="calendar"
                     HorizontalOptions="Fill"
@@ -90,7 +91,7 @@
                                 <Image
                                     Aspect="AspectFill"
                                     HeightRequest="70"
-                                    Source="{Binding Imagen, FallbackValue='empleado_placeholder.jpg'}"
+                                    Source="{Binding ImgSource, FallbackValue='empleado_placeholder.jpg'}"
                                     WidthRequest="70" />
                             </Frame>
                             <Label

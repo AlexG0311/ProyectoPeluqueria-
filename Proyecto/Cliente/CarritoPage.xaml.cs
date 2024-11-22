@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Proyecto.Cliente;
+using Proyecto.Helpers;
 using Proyecto.Model;
 
 namespace Proyecto
@@ -56,26 +57,28 @@ namespace Proyecto
             }
         }
 
+
         private async void Pagar()
         {
             if (CarritoProductos.Any())
             {
-                // Mostrar el total a pagar
                 await DisplayAlert("Pago", $"El total a pagar es: ${Total:F2}", "OK");
 
-                // Limpiar el carrito
+                // Navegar a la página de factura
+                await Navigation.PushAsync(new FacturaPage());
+
+                // Limpiar el carrito (puedes hacerlo aquí o después de finalizar la compra en FacturaPage)
                 CarritoProductos.Clear();
                 OnPropertyChanged(nameof(Total));
-
-                // Navegar a la página de factura
-                await Navigation.PushAsync(new Proyecto.Cliente.FacturaPage());  // Navega a la página FacturaPage
             }
             else
             {
-                // Si el carrito está vacío, mostrar un mensaje
                 await DisplayAlert("Carrito vacío", "No hay productos en el carrito para pagar.", "OK");
             }
         }
+
+
+
 
     }
 }

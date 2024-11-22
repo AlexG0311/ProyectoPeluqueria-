@@ -24,7 +24,7 @@
                     <Image
                         Aspect="AspectFill"
                         HeightRequest="110"
-                        Source="dotnet_bot.png"
+                        Source="perfil.png"
                         WidthRequest="110" />
                 </Frame>
 

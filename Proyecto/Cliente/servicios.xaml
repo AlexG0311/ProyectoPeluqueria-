@@ -3,77 +3,29 @@
     x:Class="Proyecto.Servicios"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Servicios">
+    >
 
     <ScrollView>
         <StackLayout>
-            <!--  Título de la sección  -->
+
             <Label
                 Margin="10"
                 FontAttributes="Bold"
                 FontSize="Large"
-                Text="Combos" />
-
-            <CollectionView
-                x:Name="CollectionViewCombos"
-                Margin="10"
-                ItemsLayout="VerticalGrid, 2">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame
-                            Margin="5"
-                            Padding="10"
-                            CornerRadius="10"
-                            HasShadow="True"
-                            HeightRequest="250"
-                            WidthRequest="160">
-                            <VerticalStackLayout>
-
-                                <!--  Imagen del producto  -->
-                                <Image
-                                    Margin="0,0,0,5"
-                                    Aspect="AspectFill"
-                                    HeightRequest="150"
-                                    Source="{Binding Imagen}" />
-
-                                <!--  Nombre del producto  -->
-                                <Label
-                                    Margin="0,0,0,5"
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    HorizontalOptions="Start"
-                                    Text="{Binding Nombre}"
-                                    TextColor="Black" />
-
-                                <!--  Calificación  -->
-                                <Label
-                                    FontSize="14"
-                                    HorizontalOptions="Start"
-                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
-                                    TextColor="Gray" />
-
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            <!--  Título de la sección  -->
-            <Label
-                Margin="10"
-                FontAttributes="Bold"
-                FontSize="Large"
-                Text="Individuales" />
+                Text="Servicios"
+                TextColor="#FFD700"/>
 
             <!--  Colección de productos "Individuales"  -->
 
             <CollectionView
                 x:Name="CollectionViewIndividuales"
                 Margin="10"
-                ItemsLayout="VerticalGrid, 2">
+                ItemsLayout="VerticalGrid, 2"
+                ItemsSource="{Binding ServiciosMostrados}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
+                            BackgroundColor="#28293E"
                             Margin="5"
                             Padding="10"
                             CornerRadius="10"
@@ -87,7 +39,7 @@
                                     Margin="0,0,0,5"
                                     Aspect="AspectFill"
                                     HeightRequest="150"
-                                    Source="{Binding Imagen}" />
+                                    Source="{Binding Img}" />
 
                                 <!--  Nombre del producto  -->
                                 <Label
@@ -96,14 +48,13 @@
                                     FontSize="16"
                                     HorizontalOptions="Start"
                                     Text="{Binding Nombre}"
-                                    TextColor="Black" />
+                                    TextColor="White" />
 
                                 <!--  Calificación  -->
                                 <Label
                                     FontSize="14"
-                                    HorizontalOptions="Start"
-                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
-                                    TextColor="Gray" />
+                                    Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
+                                    TextColor="LightGreen" />
 
                             </VerticalStackLayout>
                         </Frame>

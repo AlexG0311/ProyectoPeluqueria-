@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Proyecto.Model;
+using Proyecto.Cliente;
 
 namespace Proyecto.Empleado
 {
@@ -34,7 +35,7 @@ namespace Proyecto.Empleado
                 }
 
                 // URL base de la API
-                string baseUrl = "https://374b-181-78-20-113.ngrok-free.app";
+                string baseUrl = "https://9c76-181-78-20-113.ngrok-free.app";
 
                 // Endpoint de la API para obtener el empleado
                 string endpoint = $"/api/Usuarios/{idUsuario}";
@@ -95,7 +96,7 @@ namespace Proyecto.Empleado
                 if (idUsuario > 0)
                 {
                     // Navegar a la página de edición de perfil pasando el ID del usuario
-                    await Navigation.PushAsync(new EditarPerfil(idUsuario));
+                    await Navigation.PushAsync(new EditarPerfilCliente(idUsuario));
                 }
                 else
                 {

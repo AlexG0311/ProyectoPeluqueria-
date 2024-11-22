@@ -13,7 +13,7 @@ namespace Proyecto
         public RegisterPage()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia esto a la URL de tu API
+            _apiService = new ApiService("https://dc3a-179-19-150-36.ngrok-free.app"); // Cambia esto a la URL de tu API
         }
 
         private async void Insertar(object sender, EventArgs e)

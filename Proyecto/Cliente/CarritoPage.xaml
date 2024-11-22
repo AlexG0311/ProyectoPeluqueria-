@@ -5,7 +5,8 @@
     x:Name="ThisPage"
     Title="Carrito"
     BackgroundColor="#1E1E2C">
-    <VerticalStackLayout Padding="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
 
         <Label
             Text="Carrito de Compras"
@@ -109,4 +110,5 @@
             HeightRequest="50"
             Command="{Binding PagarCommand}" />
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

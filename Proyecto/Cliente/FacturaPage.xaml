@@ -2,52 +2,90 @@
     x:Class="Proyecto.Cliente.FacturaPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="#1E1E2C"
-    Title="Factura">
+    Title="Factura"
+    BackgroundColor="#1E1E2C">
 
     <ScrollView>
         <VerticalStackLayout Padding="20">
 
-            <!-- Título -->
-            <Label
-                Text="Factura de Compra"
-                FontSize="24"
-                FontAttributes="Bold"
-                TextColor="White"
-                HorizontalOptions="Center" />
+        <Label
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Factura"
+            TextColor="#FFD700" />
 
-            <!-- Fecha de la compra -->
-            <Label
-                Text="{Binding FechaCompra}"
-                FontSize="16"
-                TextColor="White"
-                HorizontalOptions="Center"
-                Margin="0,10" />
+        <!--  Lista de productos comprados  -->
+        <CollectionView Margin="0,20" ItemsSource="{Binding ProductosFactura}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Margin="10"
+                        Padding="10"
+                        BackgroundColor="#28293E"
+                        CornerRadius="10"
+                        WidthRequest="300"
+                        HasShadow="True">
+                        <Grid ColumnDefinitions="100,*,Auto" RowDefinitions="Auto,Auto">
+                            <Image
+                                Grid.RowSpan="2"
+                                Aspect="AspectFill"
+                                HeightRequest="70"
+                                Source="{Binding Img}"
+                                WidthRequest="70" />
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding Nombre}"
+                                    TextColor="White" />
 
-            <!-- Listado de productos -->
-            <CollectionView ItemsSource="{Binding ProductosComprados}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="5" Padding="10" BackgroundColor="#28293E" CornerRadius="10" HasShadow="True">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Nombre}" FontSize="18" TextColor="White" />
-                                <Label Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}" FontSize="16" TextColor="LightGreen" />
-                                <Label Text="Cantidad: {Binding Cantidad}" FontSize="14" TextColor="Gray" />
+                                <!--  Contenedor para Precio y Subtotal  -->
+                                <VerticalStackLayout Spacing="2">
+                                    <Label
+                                        FontSize="14"
+                                        Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
+                                        TextColor="LightGreen" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="{Binding Subtotal, StringFormat='Subtotal: ${0:F2}'}"
+                                        TextColor="LightGreen" />
+                                </VerticalStackLayout>
+
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding Cantidad, StringFormat='Cantidad: {0}'}"
+                                    TextColor="LightGray" />
                             </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
 
-            <!-- Total de la compra -->
-            <Label
-                Text="Total: ${Binding TotalCompra, StringFormat='{0:F2}'}"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Gold"
-                HorizontalOptions="EndAndExpand"
-                Margin="0,20" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <!--  Total  -->
+        <Label
+            Margin="0,10"
+            FontAttributes="Bold"
+            FontSize="20"
+            HorizontalOptions="Center"
+            Text="{Binding Total, StringFormat='Total: ${0:F2}'}"
+            TextColor="LightGreen" />
+
+        <Button
+            BackgroundColor="#FFD700"
+            Command="{Binding FinalizarCommand}"
+            CornerRadius="10"
+            FontAttributes="Bold"
+            FontSize="16"
+            HeightRequest="50"
+            Text="Finalizar"
+            TextColor="Black" />
+    </VerticalStackLayout>
+</ScrollView>
+    
 </ContentPage>

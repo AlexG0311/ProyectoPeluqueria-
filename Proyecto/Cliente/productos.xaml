@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Proyecto.Productos"
-             Title="Productos">
+<ContentPage
+    x:Class="Proyecto.Productos"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ScrollView>
         <StackLayout>
 
-            <Label Text="Productos" FontSize="Large" FontAttributes="Bold" Margin="10" />
+            <Label
+                Margin="10"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Productos"
+                TextColor="#FFD700" />
 
-            <!-- Colección de Servicios "Individuales" -->
+            <!--  Colección de Servicios "Individuales"  -->
 
             <CollectionView
                 x:Name="ColecionServicios"
                 Margin="10"
-                ItemsLayout="VerticalGrid, 2">
+                ItemsLayout="VerticalGrid, 2"
+                ItemsSource="{Binding ProductosMostrados}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
                             Margin="5"
                             Padding="10"
+                            BackgroundColor="#28293E"
                             CornerRadius="10"
                             HasShadow="True"
                             HeightRequest="250"
@@ -30,7 +37,7 @@
                                     Margin="0,0,0,5"
                                     Aspect="AspectFill"
                                     HeightRequest="150"
-                                    Source="{Binding Imagen}" />
+                                    Source="{Binding Img}" />
 
                                 <!--  Nombre del producto  -->
                                 <Label
@@ -39,14 +46,13 @@
                                     FontSize="16"
                                     HorizontalOptions="Start"
                                     Text="{Binding Nombre}"
-                                    TextColor="Black" />
+                                    TextColor="White" />
 
                                 <!--  Calificación  -->
                                 <Label
                                     FontSize="14"
-                                    HorizontalOptions="Start"
-                                    Text="{Binding Calificacion, StringFormat='Calificación: {0:F1}'}"
-                                    TextColor="Gray" />
+                                    Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
+                                    TextColor="LightGreen" />
 
                             </VerticalStackLayout>
                         </Frame>

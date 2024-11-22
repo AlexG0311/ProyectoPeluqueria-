@@ -16,7 +16,7 @@ public partial class Detalle : ContentPage
     {
         InitializeComponent();
 
-        _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
+        _apiService = new ApiService("https://9c76-181-78-20-113.ngrok-free.app"); // Cambia la URL de la API a la correcta
         BindingContext = this;
 
 
@@ -41,6 +41,10 @@ public partial class Detalle : ContentPage
             // Agrega cada producto a la colección observable
             foreach (var producto in productosDesdeApi)
             {
+
+              
+
+
                 Productos.Add(producto);
             }
         }
@@ -59,10 +63,13 @@ public partial class Detalle : ContentPage
             Servicios.Clear();
 
             // Agrega cada servicio a la colección observable
-            foreach (var servicio in serviciosDesdeApi)
+            foreach (var servicio in serviciosDesdeApi.Take(3))
             {
+
                 Servicios.Add(servicio);
             }
+
+
         }
         catch (Exception ex)
         {

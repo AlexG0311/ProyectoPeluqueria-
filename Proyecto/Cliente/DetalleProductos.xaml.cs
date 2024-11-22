@@ -17,7 +17,7 @@ namespace Proyecto
         public DetalleProductos(int productoId)
         {
             InitializeComponent();
-            _apiService = new ApiService("https://374b-181-78-20-113.ngrok-free.app"); // Cambia la URL base según corresponda
+            _apiService = new ApiService("https://9c76-181-78-20-113.ngrok-free.app"); // Cambia la URL base según corresponda
             ProductoId = productoId;
             BindingContext = Producto;
             CargarProductoAsync();
