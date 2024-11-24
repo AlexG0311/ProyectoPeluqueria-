@@ -14,7 +14,7 @@ namespace Proyecto
         public LoginPage()
         {
             InitializeComponent();
-            _apiService = new ApiService("https://9c76-181-78-20-113.ngrok-free.app");
+            _apiService = new ApiService(App.ApiBaseUrl);
         }
 
 

@@ -35,7 +35,7 @@ namespace Proyecto.Empleado
                 }
 
                 // URL base de la API
-                string baseUrl = "https://9c76-181-78-20-113.ngrok-free.app";
+                string baseUrl = "https://990b-190-0-245-162.ngrok-free.app";
 
                 // Endpoint de la API para obtener el empleado
                 string endpoint = $"/api/Usuarios/{idUsuario}";

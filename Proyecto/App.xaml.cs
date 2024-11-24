@@ -7,6 +7,8 @@ namespace Proyecto
     {
         public static Producto selectedServicio;
 
+        public static string ApiBaseUrl { get; } = "https://cde9-181-78-20-113.ngrok-free.app";
+
         public static ObservableCollection<Producto> ProductosCombos;
 
         public static ObservableCollection<Producto> CarritoProductos { get; set; } = new ObservableCollection<Producto>();

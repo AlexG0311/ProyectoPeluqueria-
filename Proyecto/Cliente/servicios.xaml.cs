@@ -17,7 +17,7 @@ public partial class Servicios : ContentPage
         InitializeComponent();
 
         // Inicializar ApiService con la URL correcta
-        _apiService = new ApiService("https://9c76-181-78-20-113.ngrok-free.app");
+        _apiService = new ApiService(App.ApiBaseUrl);
         BindingContext = this;
 
         // Cargar datos al iniciar la página
