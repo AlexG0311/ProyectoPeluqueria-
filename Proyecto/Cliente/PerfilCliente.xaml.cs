@@ -20,7 +20,7 @@ public partial class PerfilCliente : ContentPage
     {
         try
         {
-            // Obtener el ID del usuario actual desde App.CurrentUser
+            // Obtener el ID del usuario actual desde App.CurrentUser obtener()
             int idUsuario = (App.CurrentUser as ClienteDTOO)?.idUsuario ?? 0;
 
             if (idUsuario == 0)
@@ -30,7 +30,7 @@ public partial class PerfilCliente : ContentPage
             }
 
             // URL base de la API
-            string baseUrl = "https://990b-190-0-245-162.ngrok-free.ap";
+            string baseUrl = "https://154b-181-78-20-113.ngrok-free.app";
 
             // Endpoint de la API para obtener el empleado
             string endpoint = $"/api/Usuarios/{idUsuario}";
