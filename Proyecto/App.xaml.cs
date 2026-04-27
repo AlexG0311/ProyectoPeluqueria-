@@ -7,7 +7,7 @@ namespace Proyecto
     {
         public static Producto selectedServicio;
 
-        public static string ApiBaseUrl { get; } = "https://154b-181-78-20-113.ngrok-free.app";
+        public static string ApiBaseUrl { get; } = "https://apipeluqueria.onrender.com";
 
         public static ObservableCollection<Producto> ProductosCombos;
 

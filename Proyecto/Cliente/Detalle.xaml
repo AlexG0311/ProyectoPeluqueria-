@@ -2,128 +2,125 @@
     x:Class="Proyecto.Detalle"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="#1E1E2C"
+    BackgroundColor="#121212"
     NavigationPage.HasNavigationBar="True">
-    <!--  Fondo oscuro elegante  -->
-
     <ScrollView>
-        <VerticalStackLayout Padding="0">
+        <VerticalStackLayout Padding="0" Spacing="12">
 
             <!--  Banner con barra de búsqueda y carrito  -->
             <Grid Padding="0">
                 <Image
                     Grid.RowSpan="2"
-                    Margin="0,0,0,0"
                     Aspect="AspectFill"
-                    HeightRequest="200"
+                    HeightRequest="170"
                     HorizontalOptions="FillAndExpand"
-                    Opacity="0.2"
+                    Opacity="0.15"
                     Source="banner.jpg"
                     VerticalOptions="FillAndExpand"
-                    WidthRequest="450" 
-                    />
+                    WidthRequest="450" />
 
-                <Grid Padding="10" BackgroundColor="Transparent">
+                <Grid Padding="16" BackgroundColor="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <Frame
                         x:Name="CarritoFrame"
                         Grid.Column="1"
-                        Margin="0,0,0,130"
-                        Padding="5"
-                        BackgroundColor="#FFD700"
-                        BorderColor="Gold"
-                        CornerRadius="25"
-                        HasShadow="True"
-                        HeightRequest="50"
-                        WidthRequest="50">
+                        Margin="0,8,0,0"
+                        Padding="10"
+                        BackgroundColor="#1E1E1E"
+                        BorderColor="#2F2F2F"
+                        CornerRadius="22"
+                        HasShadow="False"
+                        HeightRequest="44"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        WidthRequest="44">
                         <Grid>
                             <Image
-                                HeightRequest="30"
+                                HeightRequest="22"
                                 Source="carrito.png"
-                                WidthRequest="30">
+                                WidthRequest="22">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnCartTapped" />
                                 </Image.GestureRecognizers>
                             </Image>
 
-                            <!--  Label para el contador  -->
                             <Label
-                                Margin="10,0"
+                                Margin="8,-8,0,0"
                                 FontAttributes="Bold"
-                                FontSize="19"
-                                HeightRequest="20"
+                                FontSize="12"
+                                HeightRequest="16"
                                 HorizontalOptions="End"
                                 IsVisible="{Binding TotalProductosCarrito, Converter={StaticResource GreaterThanZeroConverter}}"
                                 Text="{Binding TotalProductosCarrito}"
-                                TextColor="Red"
+                                TextColor="#FF6B6B"
                                 VerticalOptions="Start"
                                 VerticalTextAlignment="Center"
-                                WidthRequest="20" />
+                                WidthRequest="16" />
                         </Grid>
                     </Frame>
 
                 </Grid>
             </Grid>
 
-            <!--  Servicios  -->
-            <HorizontalStackLayout
-                Padding="20,10,20,0"
-                Spacing="10"
-                VerticalOptions="End">
+            <Grid Padding="20,6,20,0" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
                 <Label
                     FontAttributes="Bold"
-                    FontSize="24"
+                    FontSize="22"
                     HorizontalOptions="StartAndExpand"
                     Text="Servicios"
-                    TextColor="#FFD700" />
+                    TextColor="#F3F3F3" />
                 <Label
-                    Margin="150,0,0,7"
+                    Grid.Column="1"
                     FontAttributes="Bold"
-                    FontSize="14"
+                    FontSize="13"
                     Text="Ver todo"
-                    TextColor="#FFD700"
+                    TextColor="#9E9E9E"
                     VerticalTextAlignment="End">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="VerMaServicios" />
                     </Label.GestureRecognizers>
                 </Label>
-            </HorizontalStackLayout>
-            <!--  Amarillo Dorado  -->
+            </Grid>
 
             <CollectionView
                 x:Name="ColleccionServicio"
-                Margin="0,0,0,10"
+                Margin="14,0,0,6"
                 ItemsLayout="HorizontalList"
                 ItemsSource="{Binding Servicios}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
                             Margin="5"
-                            Padding="10"
-                            BackgroundColor="#28293E"
-                            CornerRadius="10"
-                            HasShadow="True"
-                            HeightRequest="250"
-                            WidthRequest="170">
+                            Padding="8"
+                            BackgroundColor="#1B1B1B"
+                            BorderColor="#2B2B2B"
+                            CornerRadius="12"
+                            HasShadow="False"
+                            HeightRequest="220"
+                            WidthRequest="160">
                             <VerticalStackLayout>
                                 <Image
                                     Aspect="AspectFill"
-                                    HeightRequest="150"
+                                    HeightRequest="130"
                                     Source="{Binding Img}" />
                                 <Label
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     Text="{Binding Nombre}"
-                                    TextColor="#FFD700" />
-                                <!--  Amarillo Dorado  -->
+                                    TextColor="#F3F3F3" />
                                 <Label
-                                    FontSize="14"
+                                    FontSize="13"
                                     Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
-                                    TextColor="LightGreen" />
+                                    TextColor="#A0A0A0" />
                             </VerticalStackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="IrServicio" />
@@ -133,66 +130,73 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!--  Productos  -->
-            <HorizontalStackLayout
-                Padding="20,10,20,0"
-                Spacing="10"
-                VerticalOptions="End">
+            <Grid Padding="20,6,20,0" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
                 <Label
                     FontAttributes="Bold"
-                    FontSize="24"
+                    FontSize="22"
                     HorizontalOptions="StartAndExpand"
                     Text="Productos"
-                    TextColor="#FFD700" />
+                    TextColor="#F3F3F3" />
                 <Label
-                    Margin="130,0,0,7"
+                    Grid.Column="1"
                     FontAttributes="Bold"
-                    FontSize="14"
+                    FontSize="13"
                     Text="Ver todo"
-                    TextColor="#FFD700"
+                    TextColor="#9E9E9E"
                     VerticalTextAlignment="End">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="VerMasProductos" />
                     </Label.GestureRecognizers>
                 </Label>
-            </HorizontalStackLayout>
+            </Grid>
+
             <CollectionView
                 x:Name="ProductosInicio"
-                Margin="0,0,0,10"
+                Margin="12,0,12,10"
                 ItemsLayout="VerticalGrid, 2"
                 ItemsSource="{Binding Productos}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
                             Margin="5"
-                            Padding="10"
-                            BackgroundColor="#28293E"
-                            CornerRadius="10"
-                            HasShadow="True"
-                            HeightRequest="250"
+                            Padding="8"
+                            BackgroundColor="#1B1B1B"
+                            BorderColor="#2B2B2B"
+                            CornerRadius="12"
+                            HasShadow="False"
+                            HeightRequest="230"
                             WidthRequest="160">
                             <VerticalStackLayout>
                                 <Image
                                     Aspect="AspectFill"
-                                    HeightRequest="150"
+                                    HeightRequest="130"
                                     Source="{Binding Img}" />
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="16"
+                                    FontSize="15"
                                     Text="{Binding Nombre}"
-                                    TextColor="#FFFFFF" />
-                                <!--  Blanco  -->
+                                    TextColor="#F3F3F3" />
                                 <Label
-                                    FontSize="14"
+                                    FontSize="13"
                                     Text="{Binding Precio, StringFormat='Precio: ${0:F2}'}"
-                                    TextColor="LightGreen" />
-                                <!--  Verde Claro  -->
+                                    TextColor="#A0A0A0" />
                                 <Button
-                                    BackgroundColor="#FFD700"
+                                    Margin="0,6,0,0"
+                                    BackgroundColor="#262626"
+                                    BorderColor="#3A3A3A"
+                                    BorderWidth="1"
                                     Clicked="AgregarAlCarrito"
                                     CommandParameter="{Binding}"
-                                    Text="Añadir al Carrito"
-                                    TextColor="#000000" />
+                                    CornerRadius="10"
+                                    FontSize="13"
+                                    HeightRequest="36"
+                                    Text="Añadir"
+                                    TextColor="#EAEAEA" />
 
                             </VerticalStackLayout>
                             <Frame.GestureRecognizers>
@@ -202,11 +206,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-
-
-
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
