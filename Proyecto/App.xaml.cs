@@ -7,7 +7,7 @@ namespace Proyecto
     {
         public static Producto selectedServicio;
 
-        public static string ApiBaseUrl { get; } = "https://apipeluqueria.onrender.com";
+        public static string ApiBaseUrl { get; } = "https://unarmored-prepaid-rethink.ngrok-free.dev";
 
         public static ObservableCollection<Producto> ProductosCombos;
 

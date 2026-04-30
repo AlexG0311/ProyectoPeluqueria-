@@ -3,24 +3,29 @@
     x:Class="Proyecto.Maestro"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Maestro">
+    Title="Maestro"
+    BackgroundColor="#0A0A0A">
+
     <ContentPage.Content>
+
         <VerticalStackLayout
             Padding="30"
             Spacing="25"
             VerticalOptions="CenterAndExpand">
 
-            <!--  Contenedor para imagen de perfil  -->
+            <!-- PERFIL -->
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
-                <!--  Imagen de perfil  -->
+
+                <!-- AVATAR -->
                 <Frame
                     Padding="5"
-                    BackgroundColor="White"
-                    BorderColor="#E0E0E0"
+                    BackgroundColor="#1C1C1C"
+                    BorderColor="#D4AF37"
                     CornerRadius="60"
-                    HasShadow="True"
+                    HasShadow="False"
                     HeightRequest="120"
                     WidthRequest="120">
+
                     <Image
                         Aspect="AspectFill"
                         HeightRequest="110"
@@ -28,83 +33,95 @@
                         WidthRequest="110" />
                 </Frame>
 
-                <!--  Texto de bienvenida  -->
+                <!-- TITULOS -->
                 <Label
                     FontAttributes="Bold"
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Text="¡Hola!"
                     TextColor="White" />
+
                 <Label
                     FontSize="16"
                     HorizontalTextAlignment="Center"
                     Text="¿Qué deseas hacer hoy?"
-                    TextColor="White" />
+                    TextColor="#B0B0B0" />
             </VerticalStackLayout>
 
-            <!--  Botones estilizados  -->
+    
+            <!-- INICIO -->
             <Frame
                 Margin="0"
                 Padding="0"
-                BackgroundColor="#38394A"
-                CornerRadius="30"
-                HasShadow="True">
+                BackgroundColor="#151515"
+                CornerRadius="25"
+                HasShadow="False">
+
                 <Button
                     BackgroundColor="Transparent"
-                    CornerRadius="30"
+                    CornerRadius="25"
                     FontSize="18"
                     HeightRequest="60"
                     Text="Inicio"
                     Clicked="IrInicio"
-                    TextColor="#FFD700" />
+                    TextColor="#D4AF37" />
             </Frame>
 
+            <!-- CARRITO -->
             <Frame
                 Margin="0"
                 Padding="0"
-                BackgroundColor="#38394A"
-                CornerRadius="30"
-                HasShadow="True">
+                BackgroundColor="#151515"
+                CornerRadius="25"
+                HasShadow="False">
+
                 <Button
                     BackgroundColor="Transparent"
-                    CornerRadius="30"
+                    CornerRadius="25"
                     FontSize="18"
                     HeightRequest="60"
                     Text="Carrito"
                     Clicked="IrCarrito"
-                    TextColor="#FFD700" />
+                    TextColor="#D4AF37" />
             </Frame>
 
+            <!-- COMPRAS -->
             <Frame
                 Margin="0"
                 Padding="0"
-                BackgroundColor="#38394A"
-                CornerRadius="30"
-                HasShadow="True">
+                BackgroundColor="#151515"
+                CornerRadius="25"
+                HasShadow="False">
+
                 <Button
                     BackgroundColor="Transparent"
-                    CornerRadius="30"
+                    CornerRadius="25"
                     FontSize="18"
                     HeightRequest="60"
                     Text="Compras"
-                    TextColor="#FFD700" />
+                    TextColor="#D4AF37" />
             </Frame>
 
+            <!-- PERFIL -->
             <Frame
                 Margin="0"
                 Padding="0"
-                BackgroundColor="#38394A"
-                CornerRadius="30"
-                HasShadow="True">
+                BackgroundColor="#151515"
+                CornerRadius="25"
+                HasShadow="False">
+
                 <Button
                     BackgroundColor="Transparent"
-                    CornerRadius="30"
+                    CornerRadius="25"
                     FontSize="18"
                     HeightRequest="60"
                     Text="Perfil"
                     Clicked="IrPerfil"
-                    TextColor="#FFD700" />
+                    TextColor="#D4AF37" />
             </Frame>
+
         </VerticalStackLayout>
+
     </ContentPage.Content>
+
 </ContentPage>
